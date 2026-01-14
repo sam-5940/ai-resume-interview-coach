@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI Resume Coach</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>AI Resume Coach</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
-    <h2>AI Resume Analyzer</h2>
+<div class="container">
+    <h1>AI Resume Coach</h1>
+    <p>Resume analysis → mock interview → honest AI review</p>
+
+    {% if error %}
+    <div class="card" style="color:#ff6b6b;">{{ error }}</div>
+    {% endif %}
 
     <form method="post" enctype="multipart/form-data">
-      <input type="file" name="resume" required>
-      <button type="submit">Analyze Resume</button>
+        <label>Resume (PDF)</label>
+        <input type="file" name="resume" accept=".pdf" required>
+
+        <br><br>
+
+        <label>Job Description</label>
+        <textarea name="job_desc"
+                  rows="5"
+                  placeholder="Paste the job description here..."
+                  required></textarea>
+
+        <br><br>
+
+        <button type="submit">Start Interview</button>
     </form>
-  </div>
+
+    <div class="footer-note">
+        Fully offline • Privacy-first • Local AI
+    </div>
+</div>
 </body>
 </html>

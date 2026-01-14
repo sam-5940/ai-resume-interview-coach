@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mock Interview</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Mock Interview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="container">
+<div class="container">
     <h2>Mock Interview</h2>
 
-    <p><b>Question:</b></p>
-    <p>{{ question }}</p>
+    <div class="card">
+        <h3>Interviewer</h3>
+        <p>{{ question }}</p>
+    </div>
 
     <form method="post">
-      <textarea name="answer" rows="4" placeholder="Type your answer here..."></textarea>
-      <button type="submit">Submit Answer</button>
+        <textarea name="reply"
+                  rows="4"
+                  placeholder="Type your answer here..."
+                  autofocus
+                  required></textarea>
+
+        <br><br>
+
+        <button type="submit">Submit Answer</button>
     </form>
 
-    {% if evaluation %}
-    <p><b>Score:</b> {{ evaluation.score }}/100</p>
-    <p>{{ evaluation.feedback }}</p>
-    {% endif %}
-  </div>
+    <div class="footer-note">
+        Questions adapt to your resume and job role
+    </div>
+</div>
 </body>
 </html>

@@ -1,28 +1,22 @@
+from ollama import generate
 import pdfplumber
-from skills import SKILLS, JOB_ROLE_SKILLS
 
-def extract_text(file_path):
-    text = ""
-    with pdfplumber.open(file_path) as pdf:
+def extract_pdf_text(filepath):
+
+    content = ""
+
+    with pdfplumber.open(filepath) as pdf:
         for page in pdf.pages:
-            text += page.extract_text() or ""
-    return text.lower()
+            text = page.extract_text()
+            if text:
+                content += text + "\n"
 
-def analyze_resume(file_path, role="software engineer"):
-    text = extract_text(file_path)
+    return content.strip()
 
-    found_skills = [s for s in SKILLS if s in text]
-    required_skills = JOB_ROLE_SKILLS[role]
+def resume_anlz(input):
+    anlzed_review = generate(model="resume_anlz",prompt=input)
+    output = anlzed_review.response.strip()
 
-    missing_skills = [s for s in required_skills if s not in found_skills]
+    return output
+    
 
-    score = 0
-    score += min(len(found_skills) * 10, 40)
-    score += 30 if "education" in text else 0
-    score += 30 if "project" in text else 0
-
-    return {
-        "found_skills": found_skills,
-        "missing_skills": missing_skills,
-        "score": score
-    }
