@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mock Interview</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Mock Interview</h2>
+
+    <p><b>Question:</b></p>
+    <p>{{ question }}</p>
+
+    <form method="post">
+      <textarea name="answer" rows="4" placeholder="Type your answer here..."></textarea>
+      <button type="submit">Submit Answer</button>
+    </form>
+
+    {% if evaluation %}
+    <p><b>Score:</b> {{ evaluation.score }}/100</p>
+    <p>{{ evaluation.feedback }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>

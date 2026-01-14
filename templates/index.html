@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Resume Coach</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>AI Resume Analyzer</h2>
+
+    <form method="post" enctype="multipart/form-data">
+      <input type="file" name="resume" required>
+      <button type="submit">Analyze Resume</button>
+    </form>
+  </div>
+</body>
+</html>

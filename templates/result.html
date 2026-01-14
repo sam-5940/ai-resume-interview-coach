@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Resume Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h2>Resume Analysis</h2>
+
+    <p><b>Score:</b> {{ result.score }}/100</p>
+
+    <p><b>Skills Found:</b></p>
+    <ul>
+      {% for skill in result.found_skills %}
+      <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+
+    <p><b>Missing Skills:</b></p>
+    <ul>
+      {% for skill in result.missing_skills %}
+      <li>{{ skill }}</li>
+      {% endfor %}
+    </ul>
+
+    <br>
+    <a href="/interview">Start Mock Interview →</a>
+  </div>
+</body>
+</html>
